@@ -3,11 +3,16 @@ class GitHub{
         this.username = username;
     }
     async getUserDetails (){
-       const res = await fetch(`https://api.github.com/users/${this.username}`);
-        const data = await res.json();
-        
-    this.createUserCard(data);
-
+        try{
+            const res = await fetch(`https://api.github.com/users/${this.username}`);
+            const data = await res.json();
+            this.createUserCard(data);
+        }
+        catch(error){
+           
+            return null
+        }
+       
     }
 
     createUserCard(data){
